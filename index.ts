@@ -1,3 +1,11 @@
+import { Day, days as allDays } from "./days/day";
+const Jetty = require('jetty');
+
+const debugging = true;
+var selectedIndex = 0;
+var displayingDays = false;
+let days = allDays;
+const jetty = new Jetty(process.stdout);
 
 const buttons = {
   UP: '\u001B\u005B\u0041',
@@ -5,12 +13,6 @@ const buttons = {
   CTRL_C: '\u0003',
   ENTER: '\u000D'
 };
-
-var selectedIndex = 0;
-var displayingOptions = false;
-let options = ['Opt 1', 'Opt 2', 'Opt 3'];
-const Jetty = require('jetty');
-const jetty = new Jetty(process.stdout);
 
 const initStdn = () => {
   var stdin = process.stdin;
@@ -27,8 +29,8 @@ const initStdn = () => {
     } else if (ks == buttons.CTRL_C) {
       process.exit();
     } else if (ks == buttons.ENTER) {
-      optionSelected(options[selectedIndex]);
-    } else {
+      daySelected(days[selectedIndex]);
+    } else if (debugging) {
       console.log(toUnicode(ks));
     }
   });
@@ -48,28 +50,30 @@ const toUnicode = (theString: string) => {
 }
 
 const move = (moveDistance: number) => {
-  if (displayingOptions) {
-    var newIndex = Math.min(selectedIndex + moveDistance, options.length - 1);
+  if (displayingDays) {
+    var newIndex = Math.min(selectedIndex + moveDistance, days.length - 1);
     if (newIndex < 0) newIndex = 0;
     if (newIndex != selectedIndex) {
-      displayOptions();
       selectedIndex = newIndex;
+      displayDays();
     }
   }
 }
 
-const displayOptions = () => {
-  displayingOptions = true;
+const displayDays = () => {
+  displayingDays = true;
   jetty.clear();
-  options.forEach(opt => jetty.text((selectedIndex == options.indexOf(opt) ? '-> ' : '') + opt + '\n'));
+  days.forEach(day => jetty.text((selectedIndex == days.indexOf(day) ? '-> ' : '   ') + day.toString() + '\n'));
 }
 
-const optionSelected = (opt: string) => {
-  jetty.clear();
-  jetty.text('You selected ' + opt + '\n');
-  process.exit();
+const daySelected = async (day: Day) => {
+  if (displayingDays) {
+    displayingDays = false;
+    jetty.clear();
+    day.run();
+    process.exit();
+  } 
 }
 
 initStdn();
-displayOptions();
-
+displayDays();
