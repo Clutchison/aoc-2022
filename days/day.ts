@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 export abstract class Day {
 
@@ -32,7 +32,9 @@ export abstract class Day {
 }
 
 const { DayOne } = require('./dayOne/dayOne');
+const { DayTwo } = require('./dayTwo/dayTwo');
 
 export const days = [
   new DayOne('./days/dayOne/input.txt'),
-]
+  new DayTwo('./days/dayTwo/input.txt'),
+];
