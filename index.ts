@@ -6,6 +6,7 @@ var selectedIndex = 0;
 var displayingDays = false;
 let days = allDays;
 const jetty = new Jetty(process.stdout);
+const debugDay = 0;
 
 const buttons = {
   UP: '\u001B\u005B\u0041',
@@ -63,7 +64,11 @@ const move = (moveDistance: number) => {
 const displayDays = () => {
   displayingDays = true;
   jetty.clear();
-  days.forEach(day => jetty.text((selectedIndex == days.indexOf(day) ? '-> ' : '   ') + day.toString() + '\n'));
+  days.forEach(day => {
+    
+    jetty.text((selectedIndex == days.indexOf(day) ? '-> ' : '   ') + day.toString() + '\n')
+
+  });
 }
 
 const daySelected = async (day: Day) => {
@@ -72,8 +77,13 @@ const daySelected = async (day: Day) => {
     jetty.clear();
     day.run();
     process.exit();
-  } 
+  }
 }
 
 initStdn();
-displayDays();
+if (debugDay != null) {
+  days[debugDay].run();
+  process.exit();
+} else {
+  displayDays();
+}
