@@ -6,7 +6,7 @@ var selectedIndex = 0;
 var displayingDays = false;
 let days = allDays;
 const jetty = new Jetty(process.stdout);
-const debugDay = 2;
+const debugDayIndex = 3;
 
 const buttons = {
   UP: '\u001B\u005B\u0041',
@@ -81,8 +81,8 @@ const daySelected = async (day: Day) => {
 }
 
 initStdn();
-if (debugDay != null) {
-  days[debugDay].run();
+if (debugDayIndex != null) {
+  days[debugDayIndex].run();
   process.exit();
 } else {
   displayDays();

@@ -12,6 +12,7 @@
     "@types/node": "^18.11.10"
   },
   "dependencies": {
-    "jetty": "^0.2.1"
+    "jetty": "^0.2.1",
+    "lodash": "^4.17.21"
   }
 }
