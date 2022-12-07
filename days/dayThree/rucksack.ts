@@ -16,8 +16,25 @@ export class Rucksack {
   }
 
   public getValue(): number {
-    let v = values.indexOf(this.sharedItem) + 1;
-    console.log(v);
-    return v;
+    return Rucksack.value(this.sharedItem);
+  }
+
+  public getItems(): Set<string> {
+    return new Set([...this.compartments[0], ...this.compartments[1]]);
+  }
+
+  public static findBadgeValue(sacks: Rucksack[]): number {
+    return this.value(Rucksack.findBadge(sacks));
+  }
+
+  public static findBadge(sacks: Rucksack[]): string {
+    if (!sacks || sacks.length != 3) throw new Error("Need more sacks!");
+    return [...sacks.map(sack => sack.getItems())
+      .reduce((acc, cur) => acc.size === 0 ? cur : new Set([...acc].filter(i => cur.has(i))),
+        new Set())][0];
+  }
+
+  private static value(s: string): number {
+    return values.indexOf(s) + 1;
   }
 }
