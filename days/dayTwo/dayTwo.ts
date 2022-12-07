@@ -5,7 +5,7 @@ import { Rock } from "./model/choice/rock";
 import { Scissors } from "./model/choice/scissors";
 import { RESULT } from "./model/result";
 
-const sum = ((acc, cur) => acc + cur);
+const sum = ((acc: any, cur: any) => acc + cur);
 
 export class DayTwo extends Day {
   run(): void {
@@ -72,12 +72,3 @@ export class DayTwo extends Day {
     return 'Day 2';
   }
 }
-/*
-A X => Lose with C == 3
-A Y => Tie with A == 4
-A Z => Win with B == 8
-B X => Lose with A == 1
-
-
-
-*/

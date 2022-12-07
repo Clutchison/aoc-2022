@@ -33,8 +33,10 @@ export abstract class Day {
 
 const { DayOne } = require('./dayOne/dayOne');
 const { DayTwo } = require('./dayTwo/dayTwo');
+const { DayThree } = require('./dayThree/dayThree');
 
 export const days = [
   new DayOne('./days/dayOne/input.txt'),
   new DayTwo('./days/dayTwo/input.txt'),
+  new DayThree('./days/dayThree/input.txt'),
 ];
