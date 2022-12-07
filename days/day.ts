@@ -35,10 +35,12 @@ const { DayOne } = require('./dayOne/dayOne');
 const { DayTwo } = require('./dayTwo/dayTwo');
 const { DayThree } = require('./dayThree/dayThree');
 const { DayFour } = require('./dayFour/dayFour');
+const { DayFive } = require('./dayFive/dayFive');
 
 export const days = [
   new DayOne('./days/dayOne/input.txt'),
   new DayTwo('./days/dayTwo/input.txt'),
   new DayThree('./days/dayThree/input.txt'),
   new DayFour('./days/dayFour/input.txt'),
+  new DayFive('./days/dayFive/input.txt'),
 ];
