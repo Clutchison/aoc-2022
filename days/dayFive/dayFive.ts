@@ -1,19 +1,31 @@
 import { Day } from "../day";
+import { Instruction } from "./model/instruction";
+import { Stacks } from "./model/stacks";
 
 export class DayFive extends Day {
   run(): void {
-    let inputs = super.getInput() // Get Input
+    let inputs = super.getInput().split('\r\n\r\n');
 
-    this.partOne(inputs);
-    this.partTwo(inputs)
+    this.partOne([...inputs]);
+    this.partTwo([...inputs])
   }
 
-  private partOne(inputs: number[]) {
-    this.logPartOne('Unsolved');
+  private partOne(inputs: string[]) {
+    let stacks = new Stacks(inputs[0].split('\r\n'));
+    let instructions = inputs[1]
+      .split('\r\n')
+      .map(line => new Instruction(line));
+    instructions.forEach(instruction => stacks.perform(instruction));
+    this.logPartOne(stacks.getTopItems());
   }
 
-  private partTwo(inputs: number[]) {
-    this.logPartTwo('Unsolved');
+  private partTwo(inputs: string[]) {
+    let stacks = new Stacks(inputs[0].split('\r\n'));
+    let instructions = inputs[1]
+      .split('\r\n')
+      .map(line => new Instruction(line));
+    instructions.forEach(instruction => stacks.perform(instruction, true));
+    this.logPartTwo(stacks.getTopItems());
   }
 
   toString(): string {
