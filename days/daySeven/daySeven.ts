@@ -4,23 +4,26 @@ import { Terminal } from "./model/terminal";
 
 export class DaySeven extends Day {
   run(): void {
-    let inputs = super.getInput();
     let terminal = new Terminal();
-    terminal.run(inputs);
-    let bigDirs = terminal.root.getAllDirectoriesSmallerThan(100000)
-    console.log(bigDirs.map(dir => dir.size())
+    terminal.run(super.getInput());
+
+    this.partOne(terminal);
+    this.partTwo(terminal)
+  }
+
+  private partOne(terminal: Terminal) {
+    let bigDirs = terminal.root
+      .getDirsMatching((dir: Directory) => dir.size() <= 100000)
+    this.logPartOne(bigDirs.map(dir => dir.size())
       .reduce((acc, cur) => acc + cur, 0));
-
-    this.partOne(inputs);
-    this.partTwo(inputs)
   }
 
-  private partOne(inputs: string) {
-    this.logPartOne('Unsolved');
-  }
-
-  private partTwo(inputs: string) {
-    this.logPartOne('Unsolved');
+  private partTwo(terminal: Terminal) {
+    let freeSpace = 70000000 - terminal.root.size();
+    let spaceNeeded = 30000000 - freeSpace;
+    this.logPartOne(Math.min(...terminal.root
+      .getDirsMatching((dir: Directory) => dir.size() >= spaceNeeded)
+      .map(dir => dir.size())));
   }
 
   toString(): string {

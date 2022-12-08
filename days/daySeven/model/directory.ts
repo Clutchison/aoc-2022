@@ -21,11 +21,11 @@ export class Directory extends Item {
       .map(i => (i as Item).size()).reduce((acc, cur) => acc + cur, 0);
   }
 
-  public getAllDirectoriesSmallerThan(size: number): Directory[] {
+  public getDirsMatching(fn: Function): Directory[] {
     let dirs = [...Object.values(this.items)]
       .filter(item => item instanceof Directory)
       .map(item => item as Directory);
-    return [...dirs.filter(dir => dir.size() <= size),
-    ...dirs.flatMap(dir => dir.getAllDirectoriesSmallerThan(size))];
+    return [...dirs.filter(dir => fn(dir)),
+    ...dirs.flatMap(dir => dir.getDirsMatching(fn))];
   }
 }
