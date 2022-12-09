@@ -6,7 +6,7 @@ var selectedIndex = 0;
 var displayingDays = false;
 let days = allDays;
 const jetty = new Jetty(process.stdout);
-const debugDayIndex = 6;
+const debugDayIndex = 7;
 
 const buttons = {
   UP: '\u001B\u005B\u0041',
@@ -65,7 +65,7 @@ const displayDays = () => {
   displayingDays = true;
   jetty.clear();
   days.forEach(day => {
-    
+
     jetty.text((selectedIndex == days.indexOf(day) ? '-> ' : '   ') + day.toString() + '\n')
 
   });
