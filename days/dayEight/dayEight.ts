@@ -1,18 +1,22 @@
 import { Day } from "../day";
+import { Forest } from "./model/forest";
+import { Tree } from "./model/tree";
 
 export class DayEight extends Day {
   run(): void {
-    let inputs = super.getInput();
-    this.partOne();
-    this.partTwo()
+    let forest = new Forest(super.getInput());
+    this.partOne(forest);
+    this.partTwo(forest)
   }
 
-  private partOne() {
-    this.logPartOne('Unsolved');
+  private partOne(forest: Forest) {
+    this.logPartOne(forest.getVisibleTrees().size);
   }
 
-  private partTwo() {
-    this.logPartTwo('Unsolved');
+  private partTwo(forest: Forest) {
+    this.logPartTwo(JSON.stringify(forest.getScenicScores()
+    .reduce((t1, t2) => t2.scenicScore > t1.scenicScore ? t2 : t1, new Tree(0, 0, 0))));
+    console.log()
   }
 
   toString(): string {
