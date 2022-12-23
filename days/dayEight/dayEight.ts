@@ -16,7 +16,6 @@ export class DayEight extends Day {
   private partTwo(forest: Forest) {
     this.logPartTwo(JSON.stringify(forest.getScenicScores()
     .reduce((t1, t2) => t2.scenicScore > t1.scenicScore ? t2 : t1, new Tree(0, 0, 0))));
-    console.log()
   }
 
   toString(): string {

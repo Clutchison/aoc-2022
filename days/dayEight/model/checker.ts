@@ -28,7 +28,6 @@ export class BoolCheck implements Checker {
 
   private constructor(returnValue: boolean) {
     this.returnValue = returnValue;
-
   }
 
   public static getInstance(returnValue: boolean): BoolCheck {
