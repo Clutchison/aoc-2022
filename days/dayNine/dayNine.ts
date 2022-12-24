@@ -1,6 +1,7 @@
 import { Day } from "../day";
 import { Instruction } from "./model/instruction";
 import { Rope } from "./model/rope";
+import { Position } from "./model/position";
 
 export class DayNine extends Day {
   run(): void {

@@ -9,6 +9,10 @@ export class Position {
     this.y = y;
   }
 
+  public toIndex(): string {
+    return this.x + ',' + this.y;
+  }
+
   public move(direction: Direction): Position {
     switch (direction) {
       case Direction.U:
@@ -31,11 +35,11 @@ export class Position {
       case 1:
         return tailPosition;
       case 2:
-        if (differences[0] === differences[1]) return tailPosition;
-        if (differences[0] === 2) return tailPosition.move(differences[0] > 0 ? Direction.R : Direction.L)
+        if (Math.abs(differences[0]) === Math.abs(differences[1])) return tailPosition;
+        if (Math.abs(differences[0]) === 2) return tailPosition.move(differences[0] > 0 ? Direction.R : Direction.L)
         else return tailPosition.move(differences[1] > 0 ? Direction.D : Direction.U);
       case 3:
-        if (differences.filter(d => d > 3).length > 0)
+        if (differences.filter(d => Math.abs(d) > 3).length > 0)
           throw new Error("Move is too far" + JSON.stringify(differences));
         return tailPosition
           .move(differences[0] > 0 ? Direction.R : Direction.L)
