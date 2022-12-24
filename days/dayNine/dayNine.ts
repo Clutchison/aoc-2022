@@ -1,13 +1,20 @@
 import { Day } from "../day";
+import { Instruction } from "./model/instruction";
+import { Rope } from "./model/rope";
 
 export class DayNine extends Day {
   run(): void {
-    this.partOne();
+    let input = super.getInput().split('\r\n');
+    let instructions = Array(input.length).fill(0)
+      .map((_, index) => new Instruction(input[index].trim(), index))
+    let rope = new Rope();
+    this.partOne(instructions, rope);
     this.partTwo()
   }
 
-  private partOne() {
-    this.logPartOne("Not Implemented");
+  private partOne(instructions: Instruction[], rope: Rope) {
+    instructions.forEach(i => rope.processInstruction(i));
+    this.logPartOne(rope.getPreviousTailPositions().size);
   }
 
   private partTwo() {
