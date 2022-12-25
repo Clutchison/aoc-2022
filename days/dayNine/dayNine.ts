@@ -5,21 +5,22 @@ import { Position } from "./model/position";
 
 export class DayNine extends Day {
   run(): void {
-    let input = super.getInput().split('\r\n');
-    let instructions = Array(input.length).fill(0)
-      .map((_, index) => new Instruction(input[index].trim(), index))
-    let rope = new Rope();
-    this.partOne(instructions, rope);
-    this.partTwo()
+    let instructions = super.getInput().split('\r\n')
+      .map((s: string) => new Instruction(s.trim()))
+    this.partOne(instructions);
+    this.partTwo(instructions)
   }
 
-  private partOne(instructions: Instruction[], rope: Rope) {
+  private partOne(instructions: Instruction[]) {
+    let rope = new Rope(2);
     instructions.forEach(i => rope.processInstruction(i));
     this.logPartOne(rope.getPreviousTailPositions().size);
   }
 
-  private partTwo() {
-    this.logPartTwo("Not Implemented");
+  private partTwo(instructions: Instruction[]) {
+    let rope = new Rope(10);
+    instructions.forEach(i => rope.processInstruction(i));
+    this.logPartTwo(rope.getPreviousTailPositions().size);
   }
 
   toString(): string {

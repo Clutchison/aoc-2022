@@ -44,6 +44,11 @@ export class Position {
         return tailPosition
           .move(differences[0] > 0 ? Direction.R : Direction.L)
           .move(differences[1] > 0 ? Direction.D : Direction.U);
+      case 4:
+        if (Math.abs(differences[0]) === Math.abs(differences[1]))
+          return tailPosition
+            .move(differences[0] > 0 ? Direction.R : Direction.L)
+            .move(differences[1] > 0 ? Direction.D : Direction.U);
       default:
         throw new Error("Invalid distance" + JSON.stringify(differences));
     }
