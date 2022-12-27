@@ -1,12 +1,11 @@
-import { Day, days as allDays } from "./days/day";
+import { Day, days } from "./days/day";
 const Jetty = require('jetty');
 
 const debugging = true;
 var selectedIndex = 0;
 var displayingDays = false;
-let days = allDays;
 const jetty = new Jetty(process.stdout);
-const debugDayIndex = 8;
+const debugDayIndex = 9;
 
 const buttons = {
   UP: '\u001B\u005B\u0041',

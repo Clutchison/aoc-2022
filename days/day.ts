@@ -40,6 +40,7 @@ const { DaySix } = require('./daySix/daySix');
 const { DaySeven } = require('./daySeven/daySeven');
 const { DayEight } = require('./dayEight/dayEight');
 const { DayNine } = require('./dayNine/dayNine');
+const { DayTen } = require('./dayTen/dayTen');
 
 export const days = [
   new DayOne('./days/dayOne/input.txt'),
@@ -51,4 +52,5 @@ export const days = [
   new DaySeven('./days/daySeven/input.txt'),
   new DayEight('./days/dayEight/input.txt'),
   new DayNine('./days/dayNine/input.txt'),
+  new DayTen('./days/dayTen/input.txt'),
 ];
