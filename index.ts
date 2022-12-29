@@ -5,7 +5,7 @@ const debugging = true;
 var selectedIndex = 0;
 var displayingDays = false;
 const jetty = new Jetty(process.stdout);
-const debugDayIndex = 9;
+const debugDayIndex = 10;
 
 const buttons = {
   UP: '\u001B\u005B\u0041',
